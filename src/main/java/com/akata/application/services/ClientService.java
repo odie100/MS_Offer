@@ -8,6 +8,10 @@ import java.util.List;
 public interface ClientService {
     ClientResponseDTO save(ClientRequestDTO clientRequestDTO);
     ClientResponseDTO getClient(Long id);
-    ClientResponseDTO update(ClientRequestDTO clientRequestDTO);
+
+    ClientResponseDTO update(Long id, ClientRequestDTO clientRequestDTO);
+
+    boolean delete(Long id);
+
     List<ClientResponseDTO> getAllClients();
 }
