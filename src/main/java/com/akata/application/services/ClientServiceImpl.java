@@ -6,6 +6,7 @@ import com.akata.application.entities.Client;
 import com.akata.application.mappers.ClientMapper;
 import com.akata.application.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -21,34 +22,39 @@ public class ClientServiceImpl implements ClientService {
     @Autowired
     private ClientMapper clientMapper;
 
-/*    public ClientServiceImpl(ClientRepository clientRepository, ClientMapper mapper){
-        this.clientRepository = clientRepository;
-        this.clientMapper = mapper;
-    }*/
-
     @Override
     public ClientResponseDTO save(ClientRequestDTO clientRequestDTO) {
-        Client client = clientMapper.clientRequestDTOClient(clientRequestDTO);
-        Client saved_client = clientRepository.save(client);
+        Client saved_client = clientRepository.save(clientMapper.clientRequestDTOClient(clientRequestDTO));
         return clientMapper.clientToClientResponseDTO(saved_client);
     }
 
     @Override
     public ClientResponseDTO getClient(Long id) {
-        return null;
+        Client client = clientRepository.findById(id).get();
+        return clientMapper.clientToClientResponseDTO(client);
+    }
+
+
+    @Override
+    public ClientResponseDTO update(Long id, ClientRequestDTO clientRequestDTO) {
+        Client client = clientMapper.clientRequestDTOClient(clientRequestDTO);
+        client.setId(id);
+        return clientMapper.clientToClientResponseDTO(clientRepository.save(client));
     }
 
     @Override
-    public ClientResponseDTO update(ClientRequestDTO clientRequestDTO) {
-        return null;
+    public boolean delete(Long id) {
+        try {
+            clientRepository.deleteById(id);
+            return true;
+        }catch (DataAccessException e){
+            return false;
+        }
     }
 
     @Override
     public List<ClientResponseDTO> getAllClients() {
-        List<Client> clients = clientRepository.findAll();
-        List<ClientResponseDTO> clientsResponseDTO = clients.stream()
+        return clientRepository.findAll().stream()
                 .map(client -> clientMapper.clientToClientResponseDTO(client)).collect(Collectors.toList());
-        System.out.println("here is the result : "+ clientsResponseDTO);
-        return clientsResponseDTO;
     }
 }
