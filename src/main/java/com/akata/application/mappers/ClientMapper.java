@@ -9,4 +9,5 @@ import org.mapstruct.Mapper;
 public interface ClientMapper {
     ClientResponseDTO clientToClientResponseDTO(Client client);
     Client clientRequestDTOClient(ClientRequestDTO clientRequestDTO);
+    Client clientResponseDTOClient(ClientResponseDTO clientResponseDTO);
 }
