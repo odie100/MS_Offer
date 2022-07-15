@@ -9,4 +9,5 @@ import org.mapstruct.Mapper;
 public interface StudentMapper {
     StudentResponseDTO studentToStudentResponseDTO(Student student);
     Student studentRequestDTOStudent(StudentRequestDTO studentRequestDTO);
+    Student studentReponseDTOStudent(StudentResponseDTO studentResponseDTO);
 }

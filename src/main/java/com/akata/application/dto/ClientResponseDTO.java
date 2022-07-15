@@ -1,5 +1,6 @@
 package com.akata.application.dto;
 
+import com.akata.application.entities.Location;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,8 +11,8 @@ import lombok.Setter;
 public class ClientResponseDTO {
     private Long id;
     private String username;
-    private String location;
-    private String contact;
+    private Location location;
+    //private String contact;
     private String type;
     private String description;
 }

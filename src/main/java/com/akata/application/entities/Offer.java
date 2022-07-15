@@ -28,4 +28,8 @@ public class Offer {
 
     @OneToMany(mappedBy = "offer")
     Set<Apply> apply;
+
+    @ManyToOne
+    @JoinColumn(name = "id_category")
+    Category categories;
 }
