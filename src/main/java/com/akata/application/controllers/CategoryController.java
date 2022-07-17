@@ -25,7 +25,7 @@ public class CategoryController {
     }
 
     @PostMapping(path = "/insert")
-    public CategoryResponseDTO insert(CategoryRequestDTO categoryRequestDTO){
+    public CategoryResponseDTO insert(@RequestBody CategoryRequestDTO categoryRequestDTO){
         return this.categoryService.save(categoryRequestDTO);
     }
 
