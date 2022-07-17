@@ -1,6 +1,6 @@
 package com.akata.application.services;
 
-import com.akata.application.entities.Rating;
+import com.akata.application.entities.Recommendation;
 import com.akata.application.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -14,15 +14,15 @@ public class RatingService {
     @Autowired
     private RatingRepository ratingRepository;
 
-    public Rating create(Rating rating){
-        return this.ratingRepository.save(rating);
+    public Recommendation create(Recommendation recommendation){
+        return this.ratingRepository.save(recommendation);
     }
 
-    public Rating getRating(Long id){
+    public Recommendation getRating(Long id){
         return this.ratingRepository.findById(id).get();
     }
 
-    public List<Rating> getAll(){
+    public List<Recommendation> getAll(){
         return this.ratingRepository.findAll();
     }
 
@@ -35,8 +35,8 @@ public class RatingService {
         }
     }
 
-    public Rating update(Long id, Rating rating){
-        rating.setId(id);
-        return this.ratingRepository.save(rating);
+    public Recommendation update(Long id, Recommendation recommendation){
+        recommendation.setId(id);
+        return this.ratingRepository.save(recommendation);
     }
 }

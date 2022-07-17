@@ -11,12 +11,12 @@ import java.util.Set;
 @Entity
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class Rating {
+public class Recommendation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
-    int value;
+    String recommendation;
 
-    @OneToMany(mappedBy = "rating")
-    Set<StudentRating> ratings;
+    @OneToMany(mappedBy = "recommendation")
+    Set<StudentRecommendation> ratings;
 }

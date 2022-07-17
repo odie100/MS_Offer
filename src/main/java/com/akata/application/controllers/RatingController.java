@@ -1,6 +1,6 @@
 package com.akata.application.controllers;
 
-import com.akata.application.entities.Rating;
+import com.akata.application.entities.Recommendation;
 import com.akata.application.services.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,17 +14,17 @@ public class RatingController {
     private RatingService ratingService;
 
     @PostMapping(path = "/insert")
-    public Rating insert(@RequestBody Rating rating){
-        return this.ratingService.create(rating);
+    public Recommendation insert(@RequestBody Recommendation recommendation){
+        return this.ratingService.create(recommendation);
     }
 
     @GetMapping(path = "/all")
-    public List<Rating> getAll(){
+    public List<Recommendation> getAll(){
         return this.ratingService.getAll();
     }
 
     @GetMapping(path = "/{id}")
-    public Rating get(@PathVariable("id") Long id){
+    public Recommendation get(@PathVariable("id") Long id){
         return this.ratingService.getRating(id);
     }
 

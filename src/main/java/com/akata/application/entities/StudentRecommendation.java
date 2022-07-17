@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class StudentRating {
+public class StudentRecommendation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
@@ -21,5 +21,5 @@ public class StudentRating {
 
     @ManyToOne
     @JoinColumn(name = "rating_id")
-    Rating rating;
+    Recommendation recommendation;
 }

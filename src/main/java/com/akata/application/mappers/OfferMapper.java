@@ -9,4 +9,6 @@ import org.mapstruct.Mapper;
 public interface OfferMapper {
     OfferResponseDTO offerToOfferResponseDTO(Offer offer);
     Offer offerRequestDTOOffer (OfferRequestDTO offerRequestDTO);
+
+    Offer offerResponseDTOOffer(OfferResponseDTO offerResponseDTO);
 }

@@ -1,4 +1,4 @@
-package com.akata.application.dto;
+package com.akata.application.models;
 
 import com.akata.application.entities.Category;
 import com.akata.application.entities.Client;
@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
-public class OfferResponseDTO {
-    private Long offer_id;
+public class OfferModel {
     private String theme;
     private String details;
     private LocalDate deadline;
@@ -19,7 +19,6 @@ public class OfferResponseDTO {
     private String technology;
     private LocalDate post_date;
     private int applicant_number;
-
-    Client client;
-    Category category;
+    private Long client;
+    private Long category;
 }

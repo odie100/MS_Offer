@@ -1,7 +1,7 @@
 package com.akata.application.controllers;
 
-import com.akata.application.entities.StudentRating;
-import com.akata.application.services.StudentRatingService;
+import com.akata.application.entities.StudentRecommendation;
+import com.akata.application.services.StudentRecommendationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,30 +12,30 @@ import java.util.List;
 public class StudentRatingController {
 
     @Autowired
-    private StudentRatingService studentRatingService;
+    private StudentRecommendationService studentRecommendationService;
 
     @GetMapping(path = "/all")
-    public List<StudentRating> getAll(){
-        return this.studentRatingService.getAll();
+    public List<StudentRecommendation> getAll(){
+        return this.studentRecommendationService.getAll();
     }
 
     @GetMapping(path = "/{id}")
-    public StudentRating get(@PathVariable("id") Long id){
-        return this.studentRatingService.get(id);
+    public StudentRecommendation get(@PathVariable("id") Long id){
+        return this.studentRecommendationService.get(id);
     }
 
     @PostMapping(path = "/insert")
-    public StudentRating insert(@RequestBody StudentRating studentRating){
-        return this.studentRatingService.insert(studentRating);
+    public StudentRecommendation insert(@RequestBody StudentRecommendation studentRecommendation){
+        return this.studentRecommendationService.insert(studentRecommendation);
     }
 
     @DeleteMapping("/{id}")
     public boolean delete(@PathVariable("id") Long id){
-        return this.studentRatingService.delete(id);
+        return this.studentRecommendationService.delete(id);
     }
 
     @PutMapping(path = "{id}")
-    public StudentRating update(@PathVariable("id") Long id, @RequestBody StudentRating studentRating){
-        return this.studentRatingService.update(id, studentRating);
+    public StudentRecommendation update(@PathVariable("id") Long id, @RequestBody StudentRecommendation studentRecommendation){
+        return this.studentRecommendationService.update(id, studentRecommendation);
     }
 }

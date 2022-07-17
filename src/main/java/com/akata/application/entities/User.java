@@ -23,7 +23,4 @@ public abstract class User {
     @ManyToOne()
     @JoinColumn(name = "location_id")
     Location location;
-
-    @OneToMany(mappedBy = "user")
-    Set<Contact> contacts;
 }

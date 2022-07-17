@@ -21,5 +21,5 @@ public class Student extends User{
     Set<Apply> apply;
 
     @OneToMany(mappedBy = "student")
-    Set<StudentRating> ratings;
+    Set<StudentRecommendation> ratings;
 }

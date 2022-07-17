@@ -19,6 +19,6 @@ public class Location {
     String address;
     String town;
 
-    @OneToMany(mappedBy = "location")
-    Set<User> user;
+/*    @OneToMany(mappedBy = "location")
+    Set<User> user;*/
 }
