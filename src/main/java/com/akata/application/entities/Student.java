@@ -15,8 +15,11 @@ public class Student extends User{
     private String school;
     private String level;
     private String school_career;
-    private String experiences;
+    private String bio;
 
     @OneToMany(mappedBy = "student")
     Set<Apply> apply;
+
+    @OneToMany(mappedBy = "student")
+    Set<StudentRecommendation> ratings;
 }

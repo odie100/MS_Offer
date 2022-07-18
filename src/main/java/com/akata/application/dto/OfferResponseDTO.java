@@ -1,19 +1,16 @@
-package com.akata.application.entities;
+package com.akata.application.dto;
 
+import com.akata.application.entities.Category;
+import com.akata.application.entities.Client;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Set;
-
-@Entity
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
-public class Offer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+public class OfferResponseDTO {
     private Long offer_id;
     private String theme;
     private String details;
@@ -23,13 +20,6 @@ public class Offer {
     private LocalDate post_date;
     private int applicant_number;
 
-    @ManyToOne
     Client client;
-
-    @OneToMany(mappedBy = "offer")
-    Set<Apply> apply;
-
-    @ManyToOne
-    @JoinColumn(name = "id_category")
-    Category categories;
+    Category category;
 }
