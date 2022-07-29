@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/student_rating")
+@RequestMapping(path = "/api/student_recommendation")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class StudentRecommendationController {
 
     @Autowired

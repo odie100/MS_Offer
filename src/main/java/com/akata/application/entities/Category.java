@@ -16,7 +16,4 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
     String name;
-
-    @OneToMany(mappedBy = "categories")
-    Set<Offer> offer;
 }

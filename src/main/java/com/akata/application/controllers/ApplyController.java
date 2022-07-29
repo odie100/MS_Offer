@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/apply")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ApplyController {
 
     @Autowired

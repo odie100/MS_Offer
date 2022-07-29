@@ -57,4 +57,14 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.findAll().stream()
                 .map(client -> clientMapper.clientToClientResponseDTO(client)).collect(Collectors.toList());
     }
+
+    @Override
+    public ClientResponseDTO signIn(String password, String email) {
+        Client client = this.clientRepository.login(email, password);
+        ClientResponseDTO clientResponseDTO = null;
+        if (client.getUsername() != null || !client.getUsername().isEmpty()) {
+            clientResponseDTO = this.clientMapper.clientToClientResponseDTO(client);
+        }
+        return clientResponseDTO;
+    }
 }

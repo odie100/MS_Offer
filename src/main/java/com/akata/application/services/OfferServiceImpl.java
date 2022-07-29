@@ -40,6 +40,7 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public OfferResponseDTO save(OfferModel offerModel) {
+        /*System.out.println("ID category: "+offerModel.getCategory());*/
         /*Offer offer = this.offerMapper.offerRequestDTOOffer(offerRequestDTO);
         Client client = this.clientMapper.clientResponseDTOClient(this.clientService.getClient(offer.getClient().getId()));
         Category category = this.categoryMapper.categoryResponseDTOCategory(this.categoryService.getCategory(offer.getCategories().getId()));
@@ -51,16 +52,15 @@ public class OfferServiceImpl implements OfferService {
         offerRequestDTO.setApplicant_number(offerModel.getApplicant_number());
         offerRequestDTO.setDeadline(offerModel.getDeadline());
         offerRequestDTO.setDetails(offerModel.getDetails());
-        offerRequestDTO.setTechnology(offerModel.getTechnology());
         offerRequestDTO.setPost_date(offerModel.getPost_date());
         offerRequestDTO.setTheme(offerModel.getTheme());
-        offerRequestDTO.setType(offerModel.getType());
         offerRequestDTO.setCategory(this.categoryMapper.categoryResponseDTOCategory(this.categoryService
                 .getCategory(offerModel.getCategory())));
 
         System.out.println("category: "+ offerRequestDTO.getCategory().getName()+" Id: "+offerRequestDTO.getCategory().getId());
 
         Offer offer = this.offerMapper.offerRequestDTOOffer(offerRequestDTO);
+        System.out.println("Offer: "+offer.toString());
 
         return this.offerMapper.offerToOfferResponseDTO(this.offerRepository.save(offer));
     }

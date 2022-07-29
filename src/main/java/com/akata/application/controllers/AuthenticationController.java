@@ -6,18 +6,14 @@ import com.akata.application.mappers.LocationMapper;
 import com.akata.application.mappers.StudentMapper;
 import com.akata.application.models.RegistrationClientModel;
 import com.akata.application.models.RegistrationStudentModel;
-import com.akata.application.services.ClientService;
-import com.akata.application.services.ContactService;
-import com.akata.application.services.LocationService;
-import com.akata.application.services.StudentService;
+import com.akata.application.models.SignInModel;
+import com.akata.application.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api/authentication")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AuthenticationController {
 
     @Autowired
@@ -41,6 +37,9 @@ public class AuthenticationController {
     @Autowired
     private StudentMapper studentMapper;
 
+    @Autowired
+    private AuthService authService;
+
     @PostMapping(path = "/register/client")
     public ClientResponseDTO register(@RequestBody RegistrationClientModel registrationClientModel){
         //Step 1:
@@ -56,15 +55,26 @@ public class AuthenticationController {
         clientRequestDTO.setPassword(registrationClientModel.getPassword());
         clientRequestDTO.setUsername(registrationClientModel.getUsername());
         clientRequestDTO.setType(registrationClientModel.getType());
+        clientRequestDTO.setName(registrationClientModel.getName());
 
         ClientResponseDTO client_saved = this.clientService.save(clientRequestDTO);
-        System.out.println("Id for clientResponse: "+ client_saved.getId());
+        System.out.println("name: "+clientRequestDTO.getName());
         //last Step:
-        ContactRequestDTO contactRequestDTO = new ContactRequestDTO();
-        contactRequestDTO.setUser(this.clientMapper.clientResponseDTOClient(client_saved));
-        contactRequestDTO.setType(registrationClientModel.getContact_type());
-        contactRequestDTO.setValue(registrationClientModel.getValue());
-        this.contactService.save(contactRequestDTO);
+        if(!registrationClientModel.getEmail().isEmpty()){
+            ContactRequestDTO email_contact = new ContactRequestDTO();
+            email_contact.setUser(this.clientMapper.clientResponseDTOClient(client_saved));
+            email_contact.setType("email");
+            email_contact.setValue(registrationClientModel.getEmail());
+            this.contactService.save(email_contact);
+        }
+
+        if(!registrationClientModel.getTel().isEmpty()){
+            ContactRequestDTO tel_contact = new ContactRequestDTO();
+            tel_contact.setUser(this.clientMapper.clientResponseDTOClient(client_saved));
+            tel_contact.setType("tel");
+            tel_contact.setValue(registrationClientModel.getTel());
+            this.contactService.save(tel_contact);
+        }
 
         return client_saved;
     }
@@ -89,12 +99,31 @@ public class AuthenticationController {
         studentRequestDTO.setBio(registrationStudentModel.getBio());
         StudentResponseDTO student_saved = this.studentService.save(studentRequestDTO);
         //last Step:
-        ContactRequestDTO contactRequestDTO = new ContactRequestDTO();
-        contactRequestDTO.setType(registrationStudentModel.getContact_type());
-        contactRequestDTO.setValue(registrationStudentModel.getValue());
-        contactRequestDTO.setUser(this.studentMapper.studentReponseDTOStudent(student_saved));
-        this.contactService.save(contactRequestDTO);
+        if(!registrationStudentModel.getEmail().isEmpty()){
+            ContactRequestDTO email_contact = new ContactRequestDTO();
+            email_contact.setType("email");
+            email_contact.setValue(registrationStudentModel.getEmail());
+            email_contact.setUser(this.studentMapper.studentReponseDTOStudent(student_saved));
+            this.contactService.save(email_contact);
+        }
+
+        if(!registrationStudentModel.getTel().isEmpty()){
+            ContactRequestDTO tel_contact = new ContactRequestDTO();
+            tel_contact.setType("tel");
+            tel_contact.setValue(registrationStudentModel.getTel());
+            tel_contact.setUser(this.studentMapper.studentReponseDTOStudent(student_saved));
+            this.contactService.save(tel_contact);
+        }
 
         return student_saved;
+    }
+
+    @PostMapping(path = "/signin")
+    public Object signIn(@RequestBody SignInModel signInModel){
+        if(signInModel.getType().equals("client")){
+            return this.clientService.signIn(signInModel.getPassword(), signInModel.getEmail());
+        }else {
+            return this.studentService.signIn(signInModel.getEmail(), signInModel.getPassword());
+        }
     }
 }

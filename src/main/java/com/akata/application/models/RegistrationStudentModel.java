@@ -17,7 +17,7 @@ public class RegistrationStudentModel {
     String level;
     String school_career;
     String bio;
-    String contact_type;
-    String value;
+    String email;
+    String tel;
     Long id_location;
 }

@@ -14,4 +14,6 @@ public interface ClientService {
     boolean delete(Long id);
 
     List<ClientResponseDTO> getAllClients();
+
+    ClientResponseDTO signIn(String password, String email);
 }

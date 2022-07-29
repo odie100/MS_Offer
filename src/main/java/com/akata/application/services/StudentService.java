@@ -13,4 +13,6 @@ public interface StudentService {
 
     boolean delete(Long id);
     List<StudentResponseDTO> getAllStudents();
+
+    StudentResponseDTO signIn(String email, String password);
 }

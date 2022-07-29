@@ -52,4 +52,14 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll().stream()
                 .map(student -> studentMapper.studentToStudentResponseDTO(student)).collect(Collectors.toList());
     }
+
+    @Override
+    public StudentResponseDTO signIn(String email, String password) {
+        Student student = this.studentRepository.login(email, password);
+        StudentResponseDTO studentResponseDTO = null;
+        if(student.getFirstname()!= null | !student.getFirstname().isEmpty()){
+            studentResponseDTO = this.studentMapper.studentToStudentResponseDTO(student);
+        }
+        return studentResponseDTO;
+    }
 }

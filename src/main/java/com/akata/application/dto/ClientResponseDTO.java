@@ -12,7 +12,7 @@ public class ClientResponseDTO {
     private Long id;
     private String username;
     private Location location;
-    //private String contact;
+    private String name;
     private String type;
     private String description;
 }

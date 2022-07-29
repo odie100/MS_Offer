@@ -18,6 +18,6 @@ public class Contact {
     String value;
 
     @ManyToOne
-    @JoinColumn(name = "id_user")
+    @JoinColumn(name = "id_user", referencedColumnName = "id")
     User user;
 }

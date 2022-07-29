@@ -14,4 +14,5 @@ public class ClientRequestDTO {
     private Location location;
     private String type;
     private String description;
+    private String name;
 }

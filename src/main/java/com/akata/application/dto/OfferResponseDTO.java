@@ -15,8 +15,6 @@ public class OfferResponseDTO {
     private String theme;
     private String details;
     private LocalDate deadline;
-    private String type;
-    private String technology;
     private LocalDate post_date;
     private int applicant_number;
 

@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/client")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ClientController {
     @Autowired
     private ClientService clientService;

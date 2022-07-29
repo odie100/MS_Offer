@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/student")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class StudentController {
 
     @Autowired

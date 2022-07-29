@@ -1,7 +1,9 @@
 package com.akata.application.controllers;
 
+import com.akata.application.dto.CategoryResponseDTO;
 import com.akata.application.dto.OfferRequestDTO;
 import com.akata.application.dto.OfferResponseDTO;
+import com.akata.application.entities.Category;
 import com.akata.application.entities.Offer;
 import com.akata.application.mappers.CategoryMapper;
 import com.akata.application.mappers.ClientMapper;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(path = "/api/offer")
 public class OfferController {
 
